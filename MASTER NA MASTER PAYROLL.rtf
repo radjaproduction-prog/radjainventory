@@ -1,0 +1,931 @@
+{\rtf1\ansi\ansicpg1252\cocoartf2639
+\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fswiss\fcharset0 Helvetica;\f1\fnil\fcharset0 LucidaGrande;\f2\fnil\fcharset128 HiraginoSans-W3;
+\f3\fnil\fcharset0 AppleColorEmoji;\f4\fnil\fcharset0 AppleSymbols;}
+{\colortbl;\red255\green255\blue255;}
+{\*\expandedcolortbl;;}
+\paperw11900\paperh16840\margl1440\margr1440\vieww11520\viewh8400\viewkind0
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+
+\f0\fs24 \cf0 <!DOCTYPE html>\
+<html lang="id">\
+<head>\
+    <meta charset="UTF-8">\
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">\
+    <meta name="mobile-web-app-capable" content="yes">\
+    <meta name="apple-mobile-web-app-capable" content="yes">\
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">\
+    <title>PENGGAJIAN \'97 RADJA PRODUCTION</title>\
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">\
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>\
+    <style>\
+    :root \{\
+        --bg:      #FAF0E8;\
+        --bg2:     #F2E4D6;\
+        --card:    #FFFFFF;\
+        --card2:   #FBF5EF;\
+        --orange:  #E8641A;\
+        --orange2: #F5845A;\
+        --orange3: #FDE8DA;\
+        --text:    #1A1005;\
+        --text2:   #5A4A3A;\
+        --muted:   #A0907E;\
+        --border:  #EAD8C8;\
+        --red:     #D93025;\
+        --green:   #1A8C5A;\
+        --shadow:  0 2px 12px rgba(100,50,0,.10);\
+        --shadow2: 0 4px 24px rgba(100,50,0,.14);\
+        --safe-top: env(safe-area-inset-top, 0px);\
+        --safe-bottom: env(safe-area-inset-bottom, 0px);\
+    \}\
+    * \{ margin:0; padding:0; box-sizing:border-box; -webkit-tap-highlight-color:transparent; \}\
+    html,body \{ width:100%; height:100%; background:var(--bg); color:var(--text); font-family:'Outfit',sans-serif; overflow:hidden; \}\
+\
+    /* \uc0\u9472 \u9472  LOADING \u9472 \u9472  */\
+    .loading-overlay \{ position:fixed; inset:0; background:rgba(250,240,232,.95); display:none; justify-content:center; align-items:center; z-index:9999999; flex-direction:column; gap:14px; \}\
+    .loading-overlay.active \{ display:flex; \}\
+    .spin-ring \{ width:44px; height:44px; border:4px solid var(--border); border-top-color:var(--orange); border-radius:50%; animation:spin .7s linear infinite; \}\
+    @keyframes spin \{ to\{transform:rotate(360deg);\} \}\
+    .loading-text \{ color:var(--orange); font-size:12px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; \}\
+\
+    /* \uc0\u9472 \u9472  TOAST \u9472 \u9472  */\
+    .toast \{ position:fixed; top:calc(18px + var(--safe-top)); left:50%; transform:translateX(-50%) translateY(-80px); background:var(--text); color:#fff; padding:11px 24px; border-radius:99px; font-size:13px; font-weight:600; z-index:9999999; transition:.35s cubic-bezier(.34,1.56,.64,1); opacity:0; white-space:nowrap; pointer-events:none; box-shadow:var(--shadow2); \}\
+    .toast.show \{ transform:translateX(-50%) translateY(0); opacity:1; \}\
+\
+    /* \uc0\u9472 \u9472  HOME PAGE \u9472 \u9472  */\
+    .home-page \{ width:100%; height:100vh; display:flex; flex-direction:column; padding:16px; padding-top:calc(16px + var(--safe-top)); padding-bottom:calc(16px + var(--safe-bottom)); gap:14px; background:var(--bg); \}\
+    .home-brand \{ background:var(--card); border-radius:20px; padding:16px 20px; box-shadow:var(--shadow); display:flex; align-items:center; gap:14px; \}\
+    .brand-icon \{ width:46px; height:46px; background:var(--orange); border-radius:14px; display:flex; align-items:center; justify-content:center; color:#fff; font-size:20px; flex-shrink:0; \}\
+    .brand-title \{ font-size:20px; font-weight:900; color:var(--text); line-height:1; \}\
+    .brand-sub \{ font-size:11px; color:var(--muted); font-weight:500; margin-top:2px; \}\
+    .brand-badge \{ display:flex; align-items:center; gap:4px; font-size:9px; color:var(--orange); font-weight:700; letter-spacing:.06em; margin-top:4px; \}\
+\
+    .menu-grid \{ flex:1; display:grid; grid-template-columns:1fr 1fr; gap:11px; \}\
+    .menu-card \{ background:var(--card); border-radius:18px; padding:18px 16px; box-shadow:var(--shadow); display:flex; flex-direction:column; justify-content:space-between; cursor:pointer; transition:transform .15s,box-shadow .15s; position:relative; overflow:hidden; min-height:110px; \}\
+    .menu-card:active \{ transform:scale(.97); box-shadow:none; \}\
+    .menu-card::before \{ content:''; position:absolute; bottom:-16px; right:-16px; width:64px; height:64px; background:var(--orange); opacity:.07; border-radius:50%; \}\
+    .menu-card .m-icon \{ width:38px; height:38px; background:var(--orange3); border-radius:11px; display:flex; align-items:center; justify-content:center; color:var(--orange); font-size:16px; \}\
+    .menu-card .m-label \{ font-size:13px; font-weight:800; color:var(--text); letter-spacing:.01em; \}\
+    .menu-card .m-sub \{ font-size:10px; color:var(--muted); font-weight:500; \}\
+\
+    .exit-row \{ display:flex; gap:10px; \}\
+    .exit-btn \{ flex:1; border:none; background:var(--card); border-radius:16px; padding:15px; font-size:13px; font-weight:700; color:var(--muted); cursor:pointer; font-family:'Outfit',sans-serif; box-shadow:var(--shadow); display:flex; align-items:center; justify-content:center; gap:8px; transition:color .2s; \}\
+    .exit-btn:active \{ color:var(--red); \}\
+\
+    /* \uc0\u9472 \u9472  POPUP \'97 dari ATAS \u9472 \u9472  */\
+    .popup \{ position:fixed; inset:0; background:rgba(26,16,5,.5); display:none; justify-content:center; align-items:flex-start; z-index:99999; \}\
+    .popup-sheet \{\
+        width:100%; max-width:480px; background:var(--card);\
+        border-radius:0 0 24px 24px;  /* 
+\f1 \uc0\u8592 
+\f0  sudut bawah, bukan atas */\
+        padding:0 20px 24px;\
+        padding-top:calc(16px + var(--safe-top));\
+        position:relative; margin:0 auto; max-height:92vh; overflow-y:auto;\
+        box-shadow:var(--shadow2);\
+        animation:slideDown .3s cubic-bezier(.34,1.2,.64,1);\
+    \}\
+    @keyframes slideDown \{ from\{transform:translateY(-100%);\} to\{transform:translateY(0);\} \}\
+    .sheet-handle \{ width:36px; height:4px; background:var(--border); border-radius:2px; margin:0 auto 18px; \}\
+    .popup-title \{ font-size:22px; font-weight:900; color:var(--text); margin-bottom:18px; letter-spacing:-.01em; \}\
+    .close-btn \{ position:absolute; top:calc(16px + var(--safe-top)); right:18px; background:var(--card2); border:none; width:34px; height:34px; border-radius:10px; color:var(--muted); font-size:14px; cursor:pointer; display:flex; align-items:center; justify-content:center; \}\
+\
+    /* \uc0\u9472 \u9472  FORM \u9472 \u9472  */\
+    .form-group \{ margin-bottom:13px; \}\
+    .form-group label \{ display:block; font-size:11px; font-weight:700; letter-spacing:.07em; text-transform:uppercase; color:var(--muted); margin-bottom:6px; \}\
+    .form-group select,.form-group input \{ width:100%; padding:13px 14px; border:1.5px solid var(--border); border-radius:12px; background:var(--card2); outline:none; font-size:14px; font-family:'Outfit',sans-serif; font-weight:500; color:var(--text); transition:border-color .2s; -webkit-appearance:none; \}\
+    .form-group select:focus,.form-group input:focus \{ border-color:var(--orange); background:#fff; \}\
+    .form-group select:disabled,.form-group input:disabled \{ opacity:.4; cursor:not-allowed; \}\
+    .form-group input[readonly] \{ opacity:.55; cursor:not-allowed; \}\
+    .btn-group \{ display:flex; gap:10px; margin-top:18px; \}\
+    .btn \{ flex:1; border:none; padding:14px; border-radius:14px; font-size:14px; font-weight:700; cursor:pointer; font-family:'Outfit',sans-serif; transition:opacity .2s,transform .1s; \}\
+    .btn:active \{ transform:scale(.98); \}\
+    .btn-primary \{ background:var(--orange); color:#fff; \}\
+    .btn-ghost \{ background:var(--card2); color:var(--muted); \}\
+    .btn:disabled \{ opacity:.35; cursor:not-allowed; \}\
+\
+    /* \uc0\u9472 \u9472  PAGE \u9472 \u9472  */\
+    .page \{ position:fixed; inset:0; background:var(--bg); z-index:9999; display:none; flex-direction:column; \}\
+    .page.active \{ display:flex; \}\
+    .page-header \{ padding:14px 16px; padding-top:calc(14px + var(--safe-top)); display:flex; align-items:center; gap:12px; background:var(--card); box-shadow:var(--shadow); flex-shrink:0; \}\
+    .page-back \{ background:var(--card2); border:none; border-radius:11px; width:38px; height:38px; display:flex; align-items:center; justify-content:center; font-size:14px; color:var(--text2); cursor:pointer; \}\
+    .page-title \{ font-size:20px; font-weight:900; color:var(--text); letter-spacing:-.01em; \}\
+    .page-body \{ flex:1; overflow-y:auto; padding:14px 16px; \}\
+\
+    /* \uc0\u9472 \u9472  SETTING \u9472 \u9472  */\
+    .setting-section \{ font-size:10px; font-weight:800; letter-spacing:.1em; text-transform:uppercase; color:var(--muted); margin:18px 0 8px; \}\
+    .setting-row \{ background:var(--card); border-radius:14px; padding:14px 16px; display:flex; align-items:center; justify-content:space-between; margin-bottom:8px; cursor:pointer; box-shadow:var(--shadow); transition:transform .1s; \}\
+    .setting-row:active \{ transform:scale(.99); \}\
+    .setting-row-label \{ font-size:14px; font-weight:700; color:var(--text); display:flex; align-items:center; gap:10px; \}\
+    .setting-row-label i \{ color:var(--orange); font-size:14px; width:20px; text-align:center; \}\
+    .list-btn \{ background:var(--orange3); color:var(--orange); border:none; border-radius:8px; padding:6px 14px; font-size:11px; font-weight:700; cursor:pointer; font-family:'Outfit',sans-serif; \}\
+    .setting-form-box \{ background:var(--card); border-radius:16px; padding:16px; margin-bottom:12px; box-shadow:var(--shadow); \}\
+    .save-big-btn \{ width:100%; border:none; background:var(--orange); border-radius:14px; padding:15px; font-size:15px; font-weight:800; color:#fff; cursor:pointer; font-family:'Outfit',sans-serif; margin-top:4px; margin-bottom:16px; box-shadow:0 4px 16px rgba(232,100,26,.35); \}\
+    .save-big-btn:disabled \{ opacity:.35; cursor:not-allowed; background:var(--border); color:var(--muted); box-shadow:none; \}\
+\
+    /* \uc0\u9472 \u9472  LIST POPUP \'97 dari ATAS \u9472 \u9472  */\
+    .list-popup \{ position:fixed; inset:0; background:rgba(26,16,5,.5); display:none; justify-content:center; align-items:flex-start; z-index:999999; \}\
+    .list-popup.active \{ display:flex; \}\
+    .list-popup-content \{ width:calc(100% - 32px); max-width:380px; background:var(--card); border-radius:0 0 24px 24px; padding:calc(20px + var(--safe-top)) 20px 20px; max-height:88vh; display:flex; flex-direction:column; box-shadow:var(--shadow2); animation:slideDown .3s cubic-bezier(.34,1.2,.64,1); \}\
+    .list-popup-title \{ font-size:20px; font-weight:900; color:var(--text); margin-bottom:14px; \}\
+    .list-popup-body \{ flex:1; overflow-y:auto; \}\
+    .list-item \{ background:var(--card2); border-radius:12px; padding:12px 14px; margin-bottom:8px; display:flex; align-items:center; justify-content:space-between; \}\
+    .list-item-name \{ font-size:13px; font-weight:600; color:var(--text); \}\
+    .list-item-del \{ background:transparent; color:var(--red); border:1.5px solid var(--red); border-radius:8px; padding:5px 12px; font-size:11px; font-weight:700; cursor:pointer; font-family:'Outfit',sans-serif; \}\
+    .list-add-row \{ display:flex; gap:8px; margin-top:14px; \}\
+    .list-add-row input \{ flex:1; background:var(--card2); border:1.5px solid var(--border); border-radius:10px; padding:10px 12px; color:var(--text); font-size:13px; font-family:'Outfit',sans-serif; outline:none; \}\
+    .list-add-row input:focus \{ border-color:var(--orange); \}\
+    .list-add-btn \{ background:var(--orange); color:#fff; border:none; border-radius:10px; padding:10px 16px; font-size:12px; font-weight:700; cursor:pointer; font-family:'Outfit',sans-serif; \}\
+    #listSubBagianInduk \{ width:100%; padding:10px 12px; border-radius:10px; background:var(--card2); color:var(--text); border:1.5px solid var(--border); font-family:'Outfit',sans-serif; font-size:13px; margin-top:8px; outline:none; -webkit-appearance:none; \}\
+    .list-close-btn \{ width:100%; margin-top:12px; background:var(--card2); color:var(--muted); border:none; border-radius:12px; padding:12px; font-size:13px; font-weight:700; cursor:pointer; font-family:'Outfit',sans-serif; \}\
+\
+    /* \uc0\u9472 \u9472  REKAP \u9472 \u9472  */\
+    .tab-switch \{ display:flex; margin:12px 16px 0; background:var(--card); border-radius:14px; padding:4px; box-shadow:var(--shadow); \}\
+    .tab-btn \{ flex:1; border:none; padding:10px; border-radius:11px; font-size:12px; font-weight:700; cursor:pointer; font-family:'Outfit',sans-serif; background:transparent; color:var(--muted); transition:.2s; \}\
+    .tab-btn.active \{ background:var(--orange); color:#fff; box-shadow:0 2px 10px rgba(232,100,26,.35); \}\
+    .date-bar \{ display:grid; grid-template-columns:1fr 1fr; gap:8px; padding:10px 16px 0; \}\
+    .date-chip \{ background:var(--card); border-radius:12px; padding:11px 14px; text-align:center; font-size:13px; font-weight:700; color:var(--text); cursor:pointer; box-shadow:var(--shadow); transition:transform .1s; \}\
+    .date-chip:active \{ transform:scale(.98); \}\
+    .date-chip small \{ display:block; font-size:9px; text-transform:uppercase; letter-spacing:.07em; color:var(--muted); margin-bottom:2px; font-weight:600; \}\
+    .search-bar \{ padding:10px 16px; \}\
+    .search-bar input \{ width:100%; background:var(--card); border:none; border-radius:12px; padding:12px 16px; color:var(--text); font-size:13px; outline:none; font-family:'Outfit',sans-serif; font-weight:500; box-shadow:var(--shadow); \}\
+    .search-bar input::placeholder \{ color:var(--muted); \}\
+    .table-wrap \{ margin:0 16px; background:var(--card); border-radius:16px; overflow:auto; flex:1; box-shadow:var(--shadow); \}\
+    table \{ width:100%; border-collapse:collapse; \}\
+    th \{ background:var(--card); color:var(--muted); padding:10px 8px; font-size:10px; font-weight:800; text-align:center; letter-spacing:.07em; text-transform:uppercase; border-bottom:1px solid var(--border); position:sticky; top:0; \}\
+    td \{ padding:10px 6px; border-bottom:1px solid var(--bg2); text-align:center; font-size:12px; color:var(--text); \}\
+    tr:last-child td \{ border-bottom:none; \}\
+    td.nama-cell \{ font-weight:700; font-size:13px; text-align:left; padding-left:14px; \}\
+    .detail-btn \{ background:var(--orange3); border:none; border-radius:8px; padding:6px 12px; font-size:10px; font-weight:700; cursor:pointer; font-family:'Outfit',sans-serif; color:var(--orange); letter-spacing:.03em; \}\
+    .kotor-label \{ font-size:9px; color:var(--muted); display:block; font-weight:500; \}\
+    .bersih-val \{ font-size:13px; font-weight:800; color:var(--green); \}\
+    .jenis-badge \{ display:inline-block; background:var(--orange3); border-radius:6px; padding:2px 7px; font-size:10px; font-weight:700; color:var(--orange); margin:1px; \}\
+    .home-fab \{ margin:12px 16px; margin-bottom:calc(12px + var(--safe-bottom)); background:var(--card); border-radius:14px; height:50px; display:flex; align-items:center; justify-content:center; font-size:18px; color:var(--orange); cursor:pointer; flex-shrink:0; box-shadow:var(--shadow); \}\
+    #rekapPage \{ overflow:hidden; \}\
+    .rekap-inner \{ display:flex; flex-direction:column; height:calc(100vh - 68px - var(--safe-top)); \}\
+    .table-section \{ display:flex; flex-direction:column; flex:1; overflow:hidden; \}\
+    .rekap-table-wrap \{ margin:8px 16px 0; background:var(--card); border-radius:16px; overflow:auto; flex:1; box-shadow:var(--shadow); \}\
+    .check-all,.row-check \{ width:16px; height:16px; cursor:pointer; accent-color:var(--orange); \}\
+    .print-icon-btn \{ background:var(--orange3); border:none; cursor:pointer; color:var(--orange); font-size:15px; padding:6px 10px; border-radius:8px; \}\
+\
+    /* \uc0\u9472 \u9472  DATE PICKER \'97 dari ATAS \u9472 \u9472  */\
+    .date-picker-popup \{ position:fixed; inset:0; background:rgba(26,16,5,.5); display:none; justify-content:center; align-items:flex-start; z-index:9999999; \}\
+    .date-picker-popup.active \{ display:flex; \}\
+    .date-picker-content \{ background:var(--card); border-radius:0 0 24px 24px; padding:calc(20px + var(--safe-top)) 22px 24px; width:100%; max-width:320px; box-shadow:var(--shadow2); animation:slideDown .3s cubic-bezier(.34,1.2,.64,1); \}\
+    .dp-title \{ font-size:20px; font-weight:900; color:var(--text); margin-bottom:14px; \}\
+    .date-picker-content input[type=date] \{ width:100%; padding:13px 14px; border:1.5px solid var(--border); border-radius:12px; background:var(--card2); color:var(--text); font-size:14px; font-family:'Outfit',sans-serif; outline:none; margin-bottom:14px; -webkit-appearance:none; \}\
+    .date-picker-content input[type=date]:focus \{ border-color:var(--orange); \}\
+    .dp-btns \{ display:flex; gap:10px; \}\
+    .dp-btns button \{ flex:1; padding:13px; border-radius:12px; border:none; font-size:13px; font-weight:700; cursor:pointer; font-family:'Outfit',sans-serif; \}\
+    .dp-ok \{ background:var(--orange); color:#fff; \}\
+    .dp-cancel \{ background:var(--card2); color:var(--muted); \}\
+\
+    /* \uc0\u9472 \u9472  RINCIAN OVERLAY (tengah) \u9472 \u9472  */\
+    .rc-overlay \{ position:fixed; inset:0; background:rgba(26,16,5,.55); display:none; justify-content:center; align-items:center; z-index:999999; padding:20px; \}\
+    .rc-overlay.active \{ display:flex; animation:fadeIn .2s; \}\
+    @keyframes fadeIn \{ from\{opacity:0;\} to\{opacity:1;\} \}\
+    .rc-card \{ width:100%; max-width:440px; background:var(--card); border-radius:22px; overflow:hidden; box-shadow:var(--shadow2); max-height:90vh; display:flex; flex-direction:column; \}\
+    .rc-head \{ padding:20px 20px 14px; display:flex; justify-content:space-between; align-items:flex-start; background:var(--orange); \}\
+    .rc-nama \{ font-size:48px; line-height:.95; font-weight:900; color:#fff; letter-spacing:-.02em; \}\
+    .rc-bagian \{ text-align:right; padding-top:6px; font-size:11px; font-weight:700; color:rgba(255,255,255,.8); letter-spacing:.07em; text-transform:uppercase; line-height:1.6; \}\
+    .rc-period \{ padding:10px 20px; font-size:10px; color:var(--muted); font-weight:600; letter-spacing:.07em; text-transform:uppercase; background:var(--card2); border-bottom:1px solid var(--border); \}\
+    .rc-body \{ flex:1; overflow-y:auto; \}\
+    .rc-tabel \{ width:100%; border-collapse:collapse; \}\
+    .rc-tabel thead tr \{ background:var(--orange3); \}\
+    .rc-tabel th \{ padding:10px 8px; font-size:10px; font-weight:800; letter-spacing:.07em; text-transform:uppercase; color:var(--orange); text-align:center; position:static; background:transparent; \}\
+    .rc-tabel td \{ padding:11px 8px; border-bottom:1px solid var(--bg2); text-align:center; font-size:12px; color:var(--text); \}\
+    .rc-tabel td:first-child \{ padding-left:16px; \}\
+    .rc-tabel td:last-child \{ padding-right:16px; font-weight:700; \}\
+    .rc-tabel tfoot tr \{ background:transparent; \}\
+    .rc-tabel tfoot td \{ padding:9px 16px; font-size:12px; font-weight:600; border-bottom:1px solid var(--bg2); \}\
+    .rc-tabel .tfoot-label \{ text-align:right; color:var(--muted); padding-right:8px; \}\
+    .rc-tabel .tfoot-val \{ text-align:right; color:var(--text); width:110px; font-weight:700; \}\
+    .rc-tabel .row-sub td \{ color:var(--muted); font-weight:500; \}\
+    .rc-tabel .row-pot td \{ color:var(--red); font-weight:700; \}\
+    .rc-tabel .row-tot \{ background:var(--orange); \}\
+    .rc-tabel .row-tot td \{ color:#fff; font-weight:900; font-size:18px; border-bottom:none; padding-top:14px; padding-bottom:14px; \}\
+    .rc-tabel .row-tot .tfoot-label \{ color:rgba(255,255,255,.8); font-size:13px; \}\
+    .rc-footer \{ padding:14px 16px; padding-bottom:calc(14px + var(--safe-bottom)); background:var(--card2); \}\
+    .rc-close \{ width:100%; background:var(--card); color:var(--muted); border:1.5px solid var(--border); border-radius:12px; padding:13px; font-size:13px; font-weight:700; cursor:pointer; font-family:'Outfit',sans-serif; \}\
+\
+    /* \uc0\u9472 \u9472  SLIP GAJI (tengah) \u9472 \u9472  */\
+    .slip-popup \{ position:fixed; inset:0; background:rgba(26,16,5,.6); display:none; justify-content:center; align-items:center; z-index:9999999; padding:16px; \}\
+    .slip-popup.active \{ display:flex; animation:fadeIn .2s; \}\
+    .slip-box \{ background:var(--card); border-radius:22px; width:100%; max-width:370px; overflow:hidden; box-shadow:var(--shadow2); \}\
+    .slip-print-area \{ padding:20px; \}\
+    .slip-header \{ display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:10px; \}\
+    .slip-co \{ font-size:10px; color:var(--muted); font-weight:700; letter-spacing:.1em; text-transform:uppercase; margin-bottom:3px; \}\
+    .slip-nama \{ font-size:32px; font-weight:900; color:var(--text); line-height:1; letter-spacing:-.02em; \}\
+    .slip-bagian \{ text-align:right; font-size:10px; font-weight:700; color:var(--orange); line-height:1.6; \}\
+    .slip-period \{ font-size:10px; color:var(--muted); font-weight:600; margin-bottom:12px; text-transform:uppercase; letter-spacing:.06em; \}\
+    .slip-table \{ width:100%; border-collapse:collapse; margin-bottom:10px; \}\
+    .slip-table thead tr \{ background:var(--orange3); \}\
+    .slip-table th \{ padding:7px 4px; font-size:9px; font-weight:800; text-align:center; letter-spacing:.06em; color:var(--orange); \}\
+    .slip-table td \{ padding:8px 4px; border-bottom:1px solid var(--bg2); text-align:center; font-size:10px; color:var(--text); \}\
+    .slip-line \{ display:flex; justify-content:space-between; align-items:center; padding:6px 0; font-size:11px; font-weight:600; color:var(--muted); \}\
+    .slip-line.potongan \{ color:var(--red); \}\
+    .slip-line.total \{ color:var(--orange); font-size:17px; font-weight:800; border-top:2px solid var(--orange); margin-top:6px; padding-top:10px; \}\
+    .slip-actions \{ display:flex; gap:10px; padding:14px 20px; background:var(--card2); \}\
+    .slip-print-btn \{ flex:2; background:var(--orange); color:#fff; border:none; border-radius:12px; padding:13px; font-size:13px; font-weight:700; cursor:pointer; font-family:'Outfit',sans-serif; display:flex; align-items:center; justify-content:center; gap:8px; \}\
+    .slip-close-btn \{ flex:1; background:var(--card); color:var(--muted); border:1.5px solid var(--border); border-radius:12px; padding:13px; font-size:13px; font-weight:700; cursor:pointer; font-family:'Outfit',sans-serif; \}\
+\
+    @media print \{\
+        body > *:not(#slipPopup) \{ display:none !important; \}\
+        #slipPopup \{ position:static !important; background:none !important; padding:0 !important; display:block !important; \}\
+        .slip-box \{ max-width:100% !important; border-radius:0 !important; box-shadow:none !important; \}\
+        .slip-actions \{ display:none !important; \}\
+        @page \{ size:A6 landscape; margin:6mm; \}\
+        .slip-print-area \{ background:#fff !important; color:#000 !important; \}\
+        .slip-nama,.slip-table td,.slip-line \{ color:#000 !important; \}\
+        .slip-table th \{ background:#ffe8d6 !important; color:#c05010 !important; -webkit-print-color-adjust:exact; print-color-adjust:exact; \}\
+        .slip-line.total \{ color:#c05010 !important; border-top-color:#c05010 !important; \}\
+        .slip-line.potongan \{ color:#c00 !important; \}\
+    \}\
+    </style>\
+</head>\
+<body>\
+\
+<!-- LOADING -->\
+<div class="loading-overlay active" id="loadingOverlay">\
+    <div class="spin-ring"></div>\
+    <div class="loading-text" id="loadingText">Menghubungkan...</div>\
+</div>\
+<div class="toast" id="toast"></div>\
+\
+<!-- HOME PAGE -->\
+<div class="home-page" id="homePage">\
+    <div class="home-brand">\
+        <div class="brand-icon"><i class="fa-solid fa-wallet"></i></div>\
+        <div>\
+            <div class="brand-title">PENGGAJIAN</div>\
+            <div class="brand-sub">Radja Production</div>\
+            <div class="brand-badge"><i class="fa-solid fa-fire"></i> Firebase Realtime</div>\
+        </div>\
+    </div>\
+    <div class="menu-grid">\
+        <div class="menu-card" onclick="bukaInputData()">\
+            <div class="m-icon"><i class="fa-solid fa-keyboard"></i></div>\
+            <div><div class="m-label">INPUT DATA</div><div class="m-sub">Catat pekerjaan</div></div>\
+        </div>\
+        <div class="menu-card" onclick="bukaPinjaman()">\
+            <div class="m-icon"><i class="fa-solid fa-hand-holding-dollar"></i></div>\
+            <div><div class="m-label">PINJAMAN</div><div class="m-sub">Tambah pinjaman</div></div>\
+        </div>\
+        <div class="menu-card" onclick="bukaBayar()">\
+            <div class="m-icon"><i class="fa-solid fa-money-bill-transfer"></i></div>\
+            <div><div class="m-label">BAYAR</div><div class="m-sub">Bayar pinjaman</div></div>\
+        </div>\
+        <div class="menu-card" onclick="openRekap()">\
+            <div class="m-icon"><i class="fa-solid fa-table-list"></i></div>\
+            <div><div class="m-label">REKAP</div><div class="m-sub">Lihat rekap</div></div>\
+        </div>\
+        <div class="menu-card" onclick="openSetting()">\
+            <div class="m-icon"><i class="fa-solid fa-gear"></i></div>\
+            <div><div class="m-label">SETTING</div><div class="m-sub">Master data</div></div>\
+        </div>\
+        <div class="menu-card" onclick="openPrint()">\
+            <div class="m-icon"><i class="fa-solid fa-print"></i></div>\
+            <div><div class="m-label">CETAK</div><div class="m-sub">Print slip gaji</div></div>\
+        </div>\
+    </div>\
+    <div class="exit-row">\
+        <button class="exit-btn"><i class="fa-solid fa-right-from-bracket"></i> KELUAR</button>\
+    </div>\
+</div>\
+\
+<!-- POPUP INPUT DATA (dari ATAS) -->\
+<div class="popup" id="inputPopup">\
+    <div class="popup-sheet">\
+        <div class="sheet-handle"></div>\
+        <button class="close-btn" onclick="tutupPopup('inputPopup')"><i class="fa-solid fa-xmark"></i></button>\
+        <div class="popup-title">Input Data</div>\
+        <div class="form-group"><label>Nama Pegawai</label><select id="inp_nama" onchange="onInpNama()"><option value="">-- Pilih Pegawai --</option></select></div>\
+        <div class="form-group"><label>Bagian</label><select id="inp_bagian" disabled onchange="onInpBagian()"><option value="">-- Pilih Bagian --</option></select></div>\
+        <div class="form-group"><label>Sub-Bagian</label><select id="inp_jenis" disabled onchange="onInpJenis()"><option value="">-- Pilih Sub-Bagian --</option></select></div>\
+        <div class="form-group"><label>Model</label><select id="inp_model" disabled onchange="onInpModel()"><option value="">-- Pilih Model --</option></select></div>\
+        <div class="form-group"><label>Harga Satuan</label><input type="text" id="inp_harga_display" readonly placeholder="-"></div>\
+        <div class="form-group"><label>Qty</label><input type="number" id="inp_qty" placeholder="0" min="1" disabled oninput="cekSimpanInput()" inputmode="numeric"></div>\
+        <div class="form-group"><label>Total</label><input type="text" id="inp_total_display" readonly placeholder="-"></div>\
+        <div class="btn-group">\
+            <button class="btn btn-primary" id="btnSimpanInput" disabled onclick="simpanInputData()">Simpan</button>\
+            <button class="btn btn-ghost" onclick="tutupPopup('inputPopup')">Batal</button>\
+        </div>\
+    </div>\
+</div>\
+\
+<!-- POPUP PINJAMAN (dari ATAS) -->\
+<div class="popup" id="pinjamanPopup">\
+    <div class="popup-sheet">\
+        <div class="sheet-handle"></div>\
+        <button class="close-btn" onclick="tutupPopup('pinjamanPopup')"><i class="fa-solid fa-xmark"></i></button>\
+        <div class="popup-title">Pinjaman</div>\
+        <div class="form-group"><label>Nama Pegawai</label><select id="pin_nama" onchange="onPinNama()"><option value="">-- Pilih Pegawai --</option></select></div>\
+        <div class="form-group"><label>Jenis Pinjaman</label><select id="pin_jenis" disabled onchange="onPinJenis()"><option value="">-- Pilih Jenis --</option></select></div>\
+        <div class="form-group"><label>Jumlah Pinjaman</label><input type="number" id="pin_nominal" placeholder="0" min="1" disabled oninput="cekSimpanPin()" inputmode="numeric"></div>\
+        <div class="btn-group">\
+            <button class="btn btn-primary" id="btnSimpanPin" disabled onclick="simpanPinjaman()">Simpan</button>\
+            <button class="btn btn-ghost" onclick="tutupPopup('pinjamanPopup')">Batal</button>\
+        </div>\
+    </div>\
+</div>\
+\
+<!-- POPUP BAYAR (dari ATAS) -->\
+<div class="popup" id="bayarPopup">\
+    <div class="popup-sheet">\
+        <div class="sheet-handle"></div>\
+        <button class="close-btn" onclick="tutupPopup('bayarPopup')"><i class="fa-solid fa-xmark"></i></button>\
+        <div class="popup-title">Bayar Pinjaman</div>\
+        <div class="form-group"><label>Nama Pegawai</label><select id="bayar_nama" onchange="onBayarNama()"><option value="">-- Pilih Pegawai --</option></select></div>\
+        <div class="form-group"><label>Total Pinjaman</label><input type="text" id="bayar_nilai" placeholder="-" readonly></div>\
+        <div class="form-group"><label>Sisa Pinjaman</label><input type="text" id="bayar_sisa" placeholder="-" readonly></div>\
+        <div class="form-group"><label>Jumlah Bayar</label><input type="number" id="bayar_bayar" placeholder="0" min="1" disabled oninput="onBayarInput()" inputmode="numeric"></div>\
+        <div class="btn-group">\
+            <button class="btn btn-primary" id="btnSimpanBayar" disabled onclick="simpanBayar()">Simpan</button>\
+            <button class="btn btn-ghost" onclick="tutupPopup('bayarPopup')">Batal</button>\
+        </div>\
+    </div>\
+</div>\
+\
+<!-- SETTING PAGE -->\
+<div class="page" id="settingPage">\
+    <div class="page-header">\
+        <div class="page-back" onclick="tutupSetting()"><i class="fa-solid fa-chevron-left"></i></div>\
+        <div class="page-title">Setting</div>\
+    </div>\
+    <div class="page-body">\
+        <div class="setting-section">Master Data</div>\
+        <div class="setting-row" onclick="bukaList('pegawai')"><div class="setting-row-label"><i class="fa-solid fa-user"></i> Pegawai</div><button class="list-btn" onclick="event.stopPropagation();bukaList('pegawai')">LIST</button></div>\
+        <div class="setting-row" onclick="bukaList('bagian')"><div class="setting-row-label"><i class="fa-solid fa-layer-group"></i> Bagian</div><button class="list-btn" onclick="event.stopPropagation();bukaList('bagian')">LIST</button></div>\
+        <div class="setting-row" onclick="bukaList('subbagian')"><div class="setting-row-label"><i class="fa-solid fa-sitemap"></i> Sub-Bagian</div><button class="list-btn" onclick="event.stopPropagation();bukaList('subbagian')">LIST</button></div>\
+        <div class="setting-row" onclick="bukaList('model')"><div class="setting-row-label"><i class="fa-solid fa-tag"></i> Model</div><button class="list-btn" onclick="event.stopPropagation();bukaList('model')">LIST</button></div>\
+        <div class="setting-row" onclick="bukaList('jenisPinjaman')"><div class="setting-row-label"><i class="fa-solid fa-tags"></i> Jenis Pinjaman</div><button class="list-btn" onclick="event.stopPropagation();bukaList('jenisPinjaman')">LIST</button></div>\
+        <div class="setting-section">Edit Harga</div>\
+        <div class="setting-form-box">\
+            <div class="form-group"><label>Sub-Bagian</label><select id="set_jenis" onchange="onSetJenis()"><option value="">-- Pilih Sub-Bagian --</option></select></div>\
+            <div class="form-group"><label>Model</label><select id="set_model" disabled onchange="onSetModel()"><option value="">-- Pilih Model --</option></select></div>\
+            <div class="form-group"><label>Harga Saat Ini</label><input type="text" id="set_harga_lama" readonly placeholder="Belum ada harga" style="color:var(--orange)"></div>\
+            <div class="form-group"><label>Harga Baru</label><input type="number" id="set_harga" placeholder="Masukkan harga..." min="1" disabled oninput="cekSimpanHarga()" inputmode="numeric"></div>\
+        </div>\
+        <button class="save-big-btn" id="btnSimpanHarga" disabled onclick="simpanHarga()">Simpan Harga</button>\
+    </div>\
+</div>\
+\
+<!-- LIST POPUP (dari ATAS) -->\
+<div class="list-popup" id="listPopup">\
+    <div class="list-popup-content">\
+        <div class="list-popup-title" id="listPopupTitle">List</div>\
+        <div class="list-popup-body" id="listPopupBody"></div>\
+        <div class="list-add-row">\
+            <input type="text" id="listAddInput" placeholder="Tambah baru...">\
+            <button class="list-add-btn" onclick="tambahListItem()">+ ADD</button>\
+        </div>\
+        <select id="listSubBagianInduk" style="display:none"><option value="">-- Pilih Bagian Induk --</option></select>\
+        <button class="list-close-btn" onclick="tutupList()">Tutup</button>\
+    </div>\
+</div>\
+\
+<!-- REKAP PAGE -->\
+<div class="page" id="rekapPage">\
+    <div class="page-header">\
+        <div class="page-back" onclick="tutupRekap()"><i class="fa-solid fa-chevron-left"></i></div>\
+        <div class="page-title" id="rekapTitle">Rekap Pegawai</div>\
+    </div>\
+    <div class="rekap-inner">\
+        <div class="tab-switch">\
+            <button class="tab-btn active" id="tabPegawai" onclick="gantiTab('pegawai')">Rekap Pegawai</button>\
+            <button class="tab-btn" id="tabPinjaman" onclick="gantiTab('pinjaman')">Rekap Pinjaman</button>\
+        </div>\
+        <div class="date-bar" id="rekapDateBox">\
+            <div class="date-chip" onclick="bukaDatePicker('mulai')"><small>Dari</small><span id="tglMulaiTxt">--/--/----</span></div>\
+            <div class="date-chip" onclick="bukaDatePicker('akhir')"><small>Sampai</small><span id="tglAkhirTxt">--/--/----</span></div>\
+        </div>\
+        <div class="search-bar"><input type="text" placeholder="Cari nama pegawai..." oninput="filterRekap(this.value)"></div>\
+        <div class="table-section">\
+            <div class="table-wrap" id="tablePegawai">\
+                <table><thead><tr><th>Nama</th><th>Potongan</th><th>Diterima</th><th></th></tr></thead><tbody id="tbodyPegawai"></tbody></table>\
+            </div>\
+            <div class="table-wrap" id="tablePinjaman" style="display:none">\
+                <table><thead><tr><th>Nama</th><th>Jenis</th><th>Pinjaman</th><th>Dibayar</th><th>Sisa</th></tr></thead><tbody id="tbodyPinjaman"></tbody></table>\
+            </div>\
+        </div>\
+        <div class="home-fab" onclick="tutupRekap()"><i class="fa-solid fa-house"></i></div>\
+    </div>\
+</div>\
+\
+<!-- PRINT PAGE -->\
+<div class="page" id="printPage">\
+    <div class="page-header">\
+        <div class="page-back" onclick="tutupPrint()"><i class="fa-solid fa-chevron-left"></i></div>\
+        <div class="page-title">Cetak Slip</div>\
+    </div>\
+    <div class="date-bar">\
+        <div class="date-chip" onclick="bukaDatePicker('printMulai')"><small>Dari</small><span id="printTglMulaiTxt">--/--/----</span></div>\
+        <div class="date-chip" onclick="bukaDatePicker('printAkhir')"><small>Sampai</small><span id="printTglAkhirTxt">--/--/----</span></div>\
+    </div>\
+    <div class="search-bar"><input type="text" placeholder="Cari nama pegawai..." oninput="filterPrint(this.value)"></div>\
+    <div class="rekap-table-wrap" style="margin-bottom:0;flex:1;overflow:auto;">\
+        <table>\
+            <thead><tr><th style="width:28px"><input type="checkbox" class="check-all" id="checkAll" onchange="toggleCheckAll(this)"></th><th>Nama</th><th>Potongan</th><th>Diterima</th><th>Cetak</th></tr></thead>\
+            <tbody id="tbodyPrint"></tbody>\
+        </table>\
+    </div>\
+    <div class="home-fab" onclick="tutupPrint()"><i class="fa-solid fa-house"></i></div>\
+</div>\
+\
+<!-- DATE PICKER (dari ATAS) -->\
+<div class="date-picker-popup" id="datePickerPopup">\
+    <div class="date-picker-content">\
+        <div class="dp-title" id="dpTitle">Pilih Tanggal</div>\
+        <input type="date" id="dpInput">\
+        <div class="dp-btns">\
+            <button class="dp-ok" onclick="konfirmasiDatePicker()">OK</button>\
+            <button class="dp-cancel" onclick="tutupDatePicker()">Batal</button>\
+        </div>\
+    </div>\
+</div>\
+\
+<!-- RINCIAN (tengah layar) -->\
+<div class="rc-overlay" id="rcOverlay">\
+    <div class="rc-card">\
+        <div class="rc-head">\
+            <div class="rc-nama" id="rcNama">-</div>\
+            <div class="rc-bagian" id="rcBagian">-</div>\
+        </div>\
+        <div class="rc-period" id="rcPeriod">-</div>\
+        <div class="rc-body">\
+            <table class="rc-tabel">\
+                <thead><tr><th>Model</th><th>Jenis</th><th>Qty</th><th>Harga</th><th>Jumlah</th></tr></thead>\
+                <tbody id="rcTbody"></tbody>\
+                <tfoot>\
+                    <tr class="row-sub"><td colspan="4" class="tfoot-label">SUBTOTAL</td><td class="tfoot-val" id="rcSubtotal">0</td></tr>\
+                    <tr class="row-pot" id="rcRowPot"><td colspan="4" class="tfoot-label">BAYAR PINJAMAN</td><td class="tfoot-val" id="rcPotongan">0</td></tr>\
+                    <tr class="row-tot"><td colspan="4" class="tfoot-label">TOTAL BERSIH</td><td class="tfoot-val" id="rcTotal">0</td></tr>\
+                </tfoot>\
+            </table>\
+        </div>\
+        <div class="rc-footer"><button class="rc-close" onclick="tutupRincian()">Tutup</button></div>\
+    </div>\
+</div>\
+\
+<!-- SLIP GAJI (tengah layar) -->\
+<div class="slip-popup" id="slipPopup">\
+    <div class="slip-box">\
+        <div class="slip-print-area" id="slipPrintArea">\
+            <div class="slip-header">\
+                <div>\
+                    <div class="slip-co">Radja Production</div>\
+                    <div class="slip-nama" id="slipNama">-</div>\
+                </div>\
+                <div class="slip-bagian" id="slipBagian">-</div>\
+            </div>\
+            <div class="slip-period" id="slipPeriode">-</div>\
+            <table class="slip-table">\
+                <thead><tr><th>Model</th><th>Sub-Bagian</th><th>Qty</th><th>Harga</th><th>Jumlah</th></tr></thead>\
+                <tbody id="slipTbody"></tbody>\
+            </table>\
+            <div class="slip-line"><span>Subtotal</span><span id="slipSubtotal">0</span></div>\
+            <div class="slip-line potongan" id="slipPinjamanRow"><span>Bayar Pinjaman</span><span id="slipPinjaman">0</span></div>\
+            <div class="slip-line total"><span>Total Bersih</span><span id="slipTotal">0</span></div>\
+        </div>\
+        <div class="slip-actions">\
+            <button class="slip-print-btn" onclick="cetakSlip()"><i class="fa-solid fa-print"></i> Cetak</button>\
+            <button class="slip-close-btn" onclick="tutupSlip()">Tutup</button>\
+        </div>\
+    </div>\
+</div>\
+\
+<script type="module">\
+'use strict';\
+import \{ initializeApp \} from "https://www.gstatic.com/firebasejs/10.11.1/firebase-app.js";\
+import \{\
+    getFirestore, collection, addDoc, deleteDoc, doc,\
+    getDocs, query, where, serverTimestamp, onSnapshot, updateDoc\
+\} from "https://www.gstatic.com/firebasejs/10.11.1/firebase-firestore.js";\
+\
+const firebaseConfig = \{\
+    apiKey: "AIzaSyCmXq626LVNe4EY7PGbPYcOlvki_JbM3vg",\
+    authDomain: "inventory-raja-production.firebaseapp.com",\
+    projectId: "inventory-raja-production",\
+    storageBucket: "inventory-raja-production.firebasestorage.app",\
+    messagingSenderId: "798451981499",\
+    appId: "1:798451981499:web:08cf90ef66f89073651d9e"\
+\};\
+const app = initializeApp(firebaseConfig);\
+const db  = getFirestore(app);\
+const COL = \{ master:'payroll_master', harga:'payroll_harga', input:'payroll_input', pinjaman:'payroll_pinjaman', bayar:'payroll_bayar' \};\
+\
+let MASTER = \{ pegawai:[], bagian:[], subBagian:\{\}, model:[], harga:\{\}, jenisPinjaman:[] \};\
+let _masterDocIds=\{\}, _hargaDocIds=\{\};\
+let rekapRows=[], rekapPinRows=[], printRows=[];\
+let currentTab='pegawai', listType='', dpTarget='';\
+let _sisaPerNama=\{\}, _nilaiPerNama=\{\};\
+let _tgl=\{ rekapMulai:'', rekapAkhir:'', printMulai:'', printAkhir:'' \};\
+\
+const showLoading=t=>\{document.getElementById('loadingText').textContent=t||'Memuat...';document.getElementById('loadingOverlay').classList.add('active');\};\
+const hideLoading=()=>document.getElementById('loadingOverlay').classList.remove('active');\
+function showToast(msg,dur=3000)\{const t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),dur);\}\
+window.tutupPopup=id=>document.getElementById(id).style.display='none';\
+const bukaPopup=id=>document.getElementById(id).style.display='flex';\
+const fmt=n=>Number(n||0).toLocaleString('id-ID');\
+function resetSelect(id,items,ph,dis=false)\{const el=document.getElementById(id);el.innerHTML=`<option value="">$\{ph\}</option>`;(items||[]).forEach(v=>el.innerHTML+=`<option value="$\{v\}">$\{v\}</option>`);el.value='';el.disabled=dis;\}\
+const setDis=(id,v)=>\{const el=document.getElementById(id);if(el)el.disabled=v;\};\
+const fmtTgl=d=>`$\{String(d.getDate()).padStart(2,'0')\}/$\{String(d.getMonth()+1).padStart(2,'0')\}/$\{d.getFullYear()\}`;\
+const tglHariIni=()=>fmtTgl(new Date());\
+function _getISO(key)\{const v=_tgl[key]||'';if(!v||!v.includes('/'))return'';const p=v.split('/');return`$\{p[2]\}-$\{p[1].padStart(2,'0')\}-$\{p[0].padStart(2,'0')\}`;\}\
+function _setTgl(key,label)\{_tgl[key]=label;const map=\{rekapMulai:'tglMulaiTxt',rekapAkhir:'tglAkhirTxt',printMulai:'printTglMulaiTxt',printAkhir:'printTglAkhirTxt'\};const el=document.getElementById(map[key]);if(el)el.textContent=label||'--/--/----';\}\
+\
+function initMasterListener()\{\
+    onSnapshot(collection(db,COL.master),snap=>\{\
+        const m=\{pegawai:[],bagian:[],subBagian:\{\},model:[],jenisPinjaman:[]\};\
+        _masterDocIds=\{\};\
+        snap.forEach(d=>\{\
+            const data=d.data();_masterDocIds[data.type+'|'+data.nama]=d.id;\
+            if(data.type==='pegawai') m.pegawai.push(data.nama);\
+            if(data.type==='bagian')  m.bagian.push(data.nama);\
+            if(data.type==='model')   m.model.push(data.nama);\
+            if(data.type==='jenisPinjaman') m.jenisPinjaman.push(data.nama);\
+            if(data.type==='subbagian')\{if(!m.subBagian[data.bagianInduk])m.subBagian[data.bagianInduk]=[];m.subBagian[data.bagianInduk].push(data.nama);\}\
+        \});\
+        MASTER.pegawai=m.pegawai.sort();MASTER.bagian=m.bagian.sort();MASTER.subBagian=m.subBagian;MASTER.model=m.model.sort();MASTER.jenisPinjaman=m.jenisPinjaman.sort();\
+    \});\
+    onSnapshot(collection(db,COL.harga),snap=>\{\
+        _hargaDocIds=\{\};MASTER.harga=\{\};\
+        snap.forEach(d=>\{const data=d.data();const key=data.jenis+'-'+data.model;MASTER.harga[key]=data.harga;_hargaDocIds[key]=d.id;\});\
+    \});\
+\}\
+\
+window.bukaInputData=async()=>\{\
+    resetSelect('inp_nama',MASTER.pegawai,'-- Pilih Pegawai --');\
+    resetSelect('inp_bagian',MASTER.bagian,'-- Pilih Bagian --',true);\
+    resetSelect('inp_jenis',[],'-- Pilih Sub-Bagian --',true);\
+    resetSelect('inp_model',MASTER.model,'-- Pilih Model --',true);\
+    setDis('inp_qty',true);['inp_qty','inp_harga_display','inp_total_display'].forEach(id=>document.getElementById(id).value='');\
+    setDis('btnSimpanInput',true);bukaPopup('inputPopup');\
+\};\
+window.onInpNama=()=>\{\
+    const ok=!!document.getElementById('inp_nama').value;setDis('inp_bagian',!ok);document.getElementById('inp_bagian').value='';\
+    resetSelect('inp_jenis',[],'-- Pilih Sub-Bagian --',true);document.getElementById('inp_model').value='';setDis('inp_model',true);setDis('inp_qty',true);\
+    ['inp_qty','inp_harga_display','inp_total_display'].forEach(id=>document.getElementById(id).value='');setDis('btnSimpanInput',true);\
+\};\
+window.onInpBagian=()=>\{\
+    const b=document.getElementById('inp_bagian').value;const subs=(b&&MASTER.subBagian[b])?MASTER.subBagian[b]:[];\
+    resetSelect('inp_jenis',subs,'-- Pilih Sub-Bagian --',!b);setDis('inp_model',true);document.getElementById('inp_model').value='';\
+    ['inp_harga_display','inp_total_display','inp_qty'].forEach(id=>document.getElementById(id).value='');setDis('inp_qty',true);setDis('btnSimpanInput',true);\
+\};\
+window.onInpJenis=()=>\{\
+    const ok=!!document.getElementById('inp_jenis').value;setDis('inp_model',!ok);document.getElementById('inp_model').value='';\
+    ['inp_harga_display','inp_total_display','inp_qty'].forEach(id=>document.getElementById(id).value='');setDis('inp_qty',true);setDis('btnSimpanInput',true);\
+\};\
+window.onInpModel=()=>\{\
+    const jenis=document.getElementById('inp_jenis').value,model=document.getElementById('inp_model').value,ok=!!model;\
+    setDis('inp_qty',!ok);document.getElementById('inp_qty').value='';\
+    if(ok)\{const h=MASTER.harga[jenis+'-'+model]||0;document.getElementById('inp_harga_display').value=h?'Rp '+fmt(h):'
+\f2 \uc0\u9888 
+\f0  Harga belum diset';\}\
+    else document.getElementById('inp_harga_display').value='';\
+    document.getElementById('inp_total_display').value='';setDis('btnSimpanInput',true);\
+\};\
+window.cekSimpanInput=()=>\{\
+    const jenis=document.getElementById('inp_jenis').value,model=document.getElementById('inp_model').value;\
+    const qty=parseInt(document.getElementById('inp_qty').value)||0,harga=MASTER.harga[jenis+'-'+model]||0;\
+    if(qty>0&&harga>0)\{document.getElementById('inp_total_display').value='Rp '+fmt(harga*qty);setDis('btnSimpanInput',false);\}\
+    else\{document.getElementById('inp_total_display').value='';setDis('btnSimpanInput',true);\}\
+\};\
+window.simpanInputData=async()=>\{\
+    const nama=document.getElementById('inp_nama').value,bagian=document.getElementById('inp_bagian').value;\
+    const jenis=document.getElementById('inp_jenis').value,model=document.getElementById('inp_model').value;\
+    const qty=parseInt(document.getElementById('inp_qty').value)||0;\
+    if(!nama||!bagian||!jenis||!model||qty<1)\{showToast('
+\f2 \uc0\u9888 
+\f0  Lengkapi semua field!');return;\}\
+    const harga=MASTER.harga[jenis+'-'+model]||0;if(!harga)\{showToast('
+\f2 \uc0\u9888 
+\f0  Harga belum diset!');return;\}\
+    showLoading('Menyimpan...');\
+    try\{await addDoc(collection(db,COL.input),\{tanggal:tglHariIni(),tanggalISO:new Date().toISOString().slice(0,10),nama,bagian,jenis,model,qty,harga,jumlah:harga*qty,waktu:serverTimestamp()\});showToast('
+\f3 \uc0\u9989 
+\f0  Data tersimpan!');tutupPopup('inputPopup');\}\
+    catch(e)\{showToast('
+\f3 \uc0\u10060 
+\f0  Gagal: '+e.message);\}finally\{hideLoading();\}\
+\};\
+\
+window.bukaPinjaman=()=>\{\
+    resetSelect('pin_nama',MASTER.pegawai,'-- Pilih Pegawai --');\
+    resetSelect('pin_jenis',MASTER.jenisPinjaman,'-- Pilih Jenis --',true);\
+    document.getElementById('pin_nominal').value='';setDis('pin_nominal',true);setDis('btnSimpanPin',true);bukaPopup('pinjamanPopup');\
+\};\
+window.onPinNama=()=>\{const ok=!!document.getElementById('pin_nama').value;setDis('pin_jenis',!ok);document.getElementById('pin_jenis').value='';document.getElementById('pin_nominal').value='';setDis('pin_nominal',true);setDis('btnSimpanPin',true);\};\
+window.onPinJenis=()=>\{const ok=!!document.getElementById('pin_jenis').value;setDis('pin_nominal',!ok);document.getElementById('pin_nominal').value='';setDis('btnSimpanPin',true);\};\
+window.cekSimpanPin=()=>\{const okJ=!!document.getElementById('pin_jenis').value,okN=(parseInt(document.getElementById('pin_nominal').value)||0)>0;setDis('btnSimpanPin',!(okJ&&okN));\};\
+window.simpanPinjaman=async()=>\{\
+    const nama=document.getElementById('pin_nama').value,jenis=document.getElementById('pin_jenis').value,nominal=parseInt(document.getElementById('pin_nominal').value)||0;\
+    if(!nama||!jenis||nominal<1)\{showToast('
+\f2 \uc0\u9888 
+\f0  Lengkapi semua field!');return;\}\
+    showLoading('Menyimpan pinjaman...');\
+    try\{await addDoc(collection(db,COL.pinjaman),\{tanggal:tglHariIni(),tanggalISO:new Date().toISOString().slice(0,10),nama,jenis,nominal,waktu:serverTimestamp()\});showToast('
+\f3 \uc0\u9989 
+\f0  Pinjaman tersimpan!');tutupPopup('pinjamanPopup');\}\
+    catch(e)\{showToast('
+\f3 \uc0\u10060 
+\f0  Gagal!');\}finally\{hideLoading();\}\
+\};\
+\
+window.bukaBayar=async()=>\{\
+    showLoading('Memuat data...');\
+    try\{\
+        const data=await getRekapPinjaman();_sisaPerNama=\{\};_nilaiPerNama=\{\};\
+        data.forEach(r=>\{if(r.sisa>0)\{_sisaPerNama[r.nama]=r.sisa;_nilaiPerNama[r.nama]=r.pinjaman;\}\});\
+        const list=Object.keys(_sisaPerNama);if(!list.length)\{hideLoading();showToast('
+\f4 \uc0\u8505 
+\f0  Tidak ada sisa pinjaman');return;\}\
+        resetSelect('bayar_nama',list,'-- Pilih Pegawai --');\
+        ['bayar_bayar','bayar_nilai','bayar_sisa'].forEach(id=>document.getElementById(id).value='');\
+        setDis('bayar_bayar',true);setDis('btnSimpanBayar',true);hideLoading();bukaPopup('bayarPopup');\
+    \}catch(e)\{hideLoading();showToast('
+\f3 \uc0\u10060 
+\f0  Gagal memuat');\}\
+\};\
+window.onBayarNama=()=>\{\
+    const nama=document.getElementById('bayar_nama').value;\
+    ['bayar_bayar','bayar_nilai','bayar_sisa'].forEach(id=>document.getElementById(id).value='');\
+    if(!nama)\{setDis('bayar_bayar',true);setDis('btnSimpanBayar',true);return;\}\
+    document.getElementById('bayar_nilai').value=fmt(_nilaiPerNama[nama]||0);\
+    document.getElementById('bayar_sisa').value=fmt(_sisaPerNama[nama]||0);\
+    setDis('bayar_bayar',false);setDis('btnSimpanBayar',true);\
+\};\
+window.onBayarInput=()=>\{\
+    const nama=document.getElementById('bayar_nama').value,sisaAwal=_sisaPerNama[nama]||0;\
+    const bayar=parseInt(document.getElementById('bayar_bayar').value)||0,sisaBaru=sisaAwal-bayar;\
+    const sisaEl=document.getElementById('bayar_sisa');sisaEl.value=fmt(sisaBaru);\
+    if(sisaBaru<0)\{sisaEl.style.color='var(--red)';setDis('btnSimpanBayar',true);showToast('Bayar melebihi sisa!');\}\
+    else\{sisaEl.style.color='';setDis('btnSimpanBayar',bayar<1||bayar>sisaAwal);\}\
+\};\
+window.simpanBayar=async()=>\{\
+    const nama=document.getElementById('bayar_nama').value,bayar=parseInt(document.getElementById('bayar_bayar').value)||0;\
+    const nilai=_nilaiPerNama[nama]||0,sisa=_sisaPerNama[nama]||0;\
+    if(!nama||bayar<1)\{showToast('Lengkapi data!');return;\}\
+    showLoading('Menyimpan...');\
+    try\{await addDoc(collection(db,COL.bayar),\{tanggal:tglHariIni(),tanggalISO:new Date().toISOString().slice(0,10),nama,nilai,sisaSebelum:sisa,bayar,waktu:serverTimestamp()\});showToast('
+\f3 \uc0\u9989 
+\f0  Pembayaran tersimpan!');tutupPopup('bayarPopup');\}\
+    catch(e)\{showToast('
+\f3 \uc0\u10060 
+\f0  Gagal!');\}finally\{hideLoading();\}\
+\};\
+\
+async function getInputData(dari,sampai)\{\
+    const c=[];if(dari)c.push(where('tanggalISO','>=',dari));if(sampai)c.push(where('tanggalISO','<=',sampai));\
+    const snap=await getDocs(query(collection(db,COL.input),...c));return snap.docs.map(d=>(\{id:d.id,...d.data()\}));\
+\}\
+async function getRekapPinjaman()\{\
+    const [pinSnap,bayarSnap]=await Promise.all([getDocs(collection(db,COL.pinjaman)),getDocs(collection(db,COL.bayar))]);\
+    const pP=\{\},bP=\{\},jP=\{\};\
+    pinSnap.forEach(d=>\{const v=d.data();pP[v.nama]=(pP[v.nama]||0)+(v.nominal||0);if(!jP[v.nama])jP[v.nama]=new Set();if(v.jenis)jP[v.nama].add(v.jenis);\});\
+    bayarSnap.forEach(d=>\{const v=d.data();bP[v.nama]=(bP[v.nama]||0)+(v.bayar||0);\});\
+    const allNama=new Set([...Object.keys(pP),...Object.keys(bP)]);const res=[];\
+    allNama.forEach(nama=>\{const pinjaman=pP[nama]||0,bayar=bP[nama]||0,jenis=jP[nama]?[...jP[nama]].join(', '):'-';res.push(\{nama,jenis,pinjaman,bayar,sisa:pinjaman-bayar\});\});\
+    return res;\
+\}\
+async function getRincian(nama,dari,sampai)\{\
+    const semua=await getInputData(dari,sampai),items=semua.filter(r=>r.nama===nama);\
+    let subtotal=0;const rows=items.map(r=>\{subtotal+=(r.jumlah||0);return\{model:r.model,jenis:r.jenis,qty:r.qty,harga:r.harga,jumlah:r.jumlah\};\});\
+    const pinData=await getRekapPinjaman(),pinRow=pinData.find(r=>r.nama===nama);\
+    const potongan=pinRow?Math.max(0,pinRow.sisa):0,bagian=items.length>0?(items[0].bagian||'-'):'-';\
+    return\{items:rows,subtotal,potongan,total:subtotal-potongan,bagian\};\
+\}\
+\
+window.openSetting=()=>\{initSettingHarga();document.getElementById('settingPage').classList.add('active');\};\
+window.tutupSetting=()=>document.getElementById('settingPage').classList.remove('active');\
+function initSettingHarga()\{\
+    const allSub=Object.values(MASTER.subBagian).flat().sort();\
+    resetSelect('set_jenis',allSub,'-- Pilih Sub-Bagian --');resetSelect('set_model',MASTER.model,'-- Pilih Model --',true);\
+    document.getElementById('set_harga').value='';document.getElementById('set_harga_lama').value='';setDis('set_harga',true);setDis('btnSimpanHarga',true);\
+\}\
+window.onSetJenis=()=>\{setDis('set_model',!document.getElementById('set_jenis').value);document.getElementById('set_model').value='';document.getElementById('set_harga').value='';document.getElementById('set_harga_lama').value='';setDis('set_harga',true);setDis('btnSimpanHarga',true);\};\
+window.onSetModel=()=>\{\
+    const jenis=document.getElementById('set_jenis').value,model=document.getElementById('set_model').value;\
+    if(!model)\{setDis('set_harga',true);document.getElementById('set_harga').value='';setDis('btnSimpanHarga',true);return;\}\
+    setDis('set_harga',false);const ex=MASTER.harga[jenis+'-'+model];\
+    document.getElementById('set_harga_lama').value=ex?'Rp '+fmt(ex):'Belum ada harga';document.getElementById('set_harga').value=ex||'';setDis('btnSimpanHarga',!ex);\
+\};\
+window.cekSimpanHarga=()=>setDis('btnSimpanHarga',(parseInt(document.getElementById('set_harga').value)||0)<1);\
+window.simpanHarga=async()=>\{\
+    const jenis=document.getElementById('set_jenis').value,model=document.getElementById('set_model').value,harga=parseInt(document.getElementById('set_harga').value)||0;\
+    if(!jenis||!model||harga<1)\{showToast('
+\f2 \uc0\u9888 
+\f0  Lengkapi semua field!');return;\}showLoading('Menyimpan harga...');\
+    try\{\
+        const key=jenis+'-'+model;\
+        if(_hargaDocIds[key])await updateDoc(doc(db,COL.harga,_hargaDocIds[key]),\{harga\});\
+        else await addDoc(collection(db,COL.harga),\{jenis,model,harga,waktu:serverTimestamp()\});\
+        MASTER.harga[key]=harga;showToast('
+\f3 \uc0\u9989 
+\f0  Harga tersimpan!');\
+        document.getElementById('set_harga_lama').value='Rp '+fmt(harga);document.getElementById('set_harga').value='';setDis('btnSimpanHarga',true);\
+    \}catch(e)\{showToast('
+\f3 \uc0\u10060 
+\f0  Gagal: '+e.message);\}finally\{hideLoading();\}\
+\};\
+\
+const listTitles=\{pegawai:'Pegawai',bagian:'Bagian',subbagian:'Sub-Bagian',model:'Model',jenisPinjaman:'Jenis Pinjaman'\};\
+window.bukaList=type=>\{\
+    listType=type;document.getElementById('listPopupTitle').textContent=listTitles[type]||type;document.getElementById('listAddInput').value='';\
+    const indukEl=document.getElementById('listSubBagianInduk');\
+    if(type==='subbagian')\{indukEl.style.display='block';indukEl.innerHTML='<option value="">-- Pilih Bagian Induk --</option>';MASTER.bagian.forEach(b=>indukEl.innerHTML+=`<option value="$\{b\}">$\{b\}</option>`);document.getElementById('listAddInput').placeholder='Nama sub-bagian baru...';\}\
+    else\{indukEl.style.display='none';document.getElementById('listAddInput').placeholder='Tambah baru...';\}\
+    renderListBody();document.getElementById('listPopup').classList.add('active');\
+\};\
+window.tutupList=()=>document.getElementById('listPopup').classList.remove('active');\
+function getListData()\{if(listType==='pegawai')return MASTER.pegawai;if(listType==='bagian')return MASTER.bagian;if(listType==='model')return MASTER.model;if(listType==='jenisPinjaman')return MASTER.jenisPinjaman;if(listType==='subbagian')return Object.values(MASTER.subBagian).flat();return[];\}\
+function renderListBody()\{\
+    const data=getListData(),body=document.getElementById('listPopupBody');\
+    if(!data.length)\{body.innerHTML='<div style="color:var(--muted);text-align:center;padding:16px;font-size:13px">Belum ada data</div>';return;\}\
+    body.innerHTML=data.map((item,i)=>`<div class="list-item"><span class="list-item-name">$\{item\}</span><button class="list-item-del" onclick="hapusListItem($\{i\})">Hapus</button></div>`).join('');\
+\}\
+window.hapusListItem=async idx=>\{\
+    const value=getListData()[idx];if(!value)return;showLoading('Menghapus...');\
+    try\{const docId=_masterDocIds[listType+'|'+value];if(docId)await deleteDoc(doc(db,COL.master,docId));showToast('
+\f3 \uc0\u9989 
+\f0  Dihapus');renderListBody();\}\
+    catch(e)\{showToast('
+\f3 \uc0\u10060 
+\f0  Gagal');\}finally\{hideLoading();\}\
+\};\
+window.tambahListItem=async()=>\{\
+    const val=document.getElementById('listAddInput').value.trim().toUpperCase();if(!val)\{showToast('
+\f2 \uc0\u9888 
+\f0  Isi nama terlebih dahulu!');return;\}showLoading('Menyimpan...');\
+    try\{\
+        if(listType==='subbagian')\{const bi=document.getElementById('listSubBagianInduk').value;if(!bi)\{hideLoading();showToast('
+\f2 \uc0\u9888 
+\f0  Pilih bagian induk!');return;\}await addDoc(collection(db,COL.master),\{type:'subbagian',nama:val,bagianInduk:bi,waktu:serverTimestamp()\});\}\
+        else\{if(getListData().includes(val))\{hideLoading();showToast('
+\f2 \uc0\u9888 
+\f0  Data sudah ada!');return;\}await addDoc(collection(db,COL.master),\{type:listType,nama:val,waktu:serverTimestamp()\});\}\
+        document.getElementById('listAddInput').value='';showToast('
+\f3 \uc0\u9989 
+\f0  Ditambahkan');setTimeout(renderListBody,500);\
+    \}catch(e)\{showToast('
+\f3 \uc0\u10060 
+\f0  Gagal');\}finally\{hideLoading();\}\
+\};\
+\
+window.openRekap=async()=>\{document.getElementById('rekapPage').classList.add('active');await muatRekapPegawai();\};\
+window.tutupRekap=()=>\{document.getElementById('rekapPage').classList.remove('active');tutupRincian();\};\
+window.gantiTab=async tab=>\{\
+    currentTab=tab;\
+    document.getElementById('tabPegawai').classList.toggle('active',tab==='pegawai');document.getElementById('tabPinjaman').classList.toggle('active',tab==='pinjaman');\
+    document.getElementById('tablePegawai').style.display=tab==='pegawai'?'':'none';document.getElementById('tablePinjaman').style.display=tab==='pinjaman'?'':'none';\
+    document.getElementById('rekapTitle').textContent=tab==='pegawai'?'Rekap Pegawai':'Rekap Pinjaman';\
+    document.getElementById('rekapDateBox').style.display=tab==='pegawai'?'':'none';\
+    if(tab==='pegawai')await muatRekapPegawai();else await muatRekapPinjaman();\
+\};\
+async function muatRekapPegawai(filter='')\{\
+    const dari=_getISO('rekapMulai'),sampai=_getISO('rekapAkhir');showLoading('Memuat rekap...');\
+    try\{\
+        const items=await getInputData(dari,sampai);const grouped=\{\};\
+        items.forEach(r=>\{if(!grouped[r.nama])grouped[r.nama]=\{total:0\};grouped[r.nama].total+=(r.jumlah||0);\});\
+        const pinData=await getRekapPinjaman(),pinMap=\{\};pinData.forEach(r=>pinMap[r.nama]=Math.max(0,r.sisa));\
+        rekapRows=Object.entries(grouped).map(([nama,v])=>\{const pot=pinMap[nama]||0;return\{nama,total:v.total,potongan:pot,bersih:v.total-pot\};\}).sort((a,b)=>a.nama.localeCompare(b.nama));\
+        renderTabelRekap(filter);\
+    \}catch(e)\{showToast('
+\f3 \uc0\u10060 
+\f0  Gagal memuat rekap');\}finally\{hideLoading();\}\
+\}\
+function renderTabelRekap(filter='')\{\
+    const tbody=document.getElementById('tbodyPegawai');\
+    const rows=filter?rekapRows.filter(r=>r.nama.toLowerCase().includes(filter.toLowerCase())):rekapRows;\
+    if(!rows.length)\{tbody.innerHTML='<tr><td colspan="4" style="color:var(--muted);padding:20px;text-align:center;font-size:13px">Belum ada data</td></tr>';return;\}\
+    tbody.innerHTML=rows.map(r=>`<tr>\
+      <td class="nama-cell">$\{r.nama\}</td>\
+      <td style="color:var(--red);font-weight:600">$\{r.potongan>0?fmt(r.potongan):'-'\}</td>\
+      <td><span class="kotor-label">Kotor: $\{fmt(r.total)\}</span><span class="bersih-val">$\{fmt(r.bersih)\}</span></td>\
+      <td><button class="detail-btn" onclick="bukaRincian('$\{r.nama.replace(/'/g,"\\\\'")\}')">Rincian</button></td>\
+    </tr>`).join('');\
+\}\
+async function muatRekapPinjaman()\{\
+    showLoading('Memuat rekap pinjaman...');\
+    try\{rekapPinRows=(await getRekapPinjaman()).filter(r=>r.sisa>0);renderTabelPinjaman();\}\
+    catch(e)\{showToast('
+\f3 \uc0\u10060 
+\f0  Gagal');\}finally\{hideLoading();\}\
+\}\
+function renderTabelPinjaman(filter='')\{\
+    const tbody=document.getElementById('tbodyPinjaman');\
+    const rows=filter?rekapPinRows.filter(r=>r.nama.toLowerCase().includes(filter.toLowerCase())):rekapPinRows;\
+    if(!rows.length)\{tbody.innerHTML='<tr><td colspan="5" style="color:var(--muted);padding:20px;font-size:13px">Tidak ada pinjaman aktif</td></tr>';return;\}\
+    tbody.innerHTML=rows.map(r=>`<tr>\
+      <td class="nama-cell">$\{r.nama\}</td>\
+      <td>$\{r.jenis&&r.jenis!=='-'?r.jenis.split(', ').map(j=>`<span class="jenis-badge">$\{j\}</span>`).join(' '):'-'\}</td>\
+      <td>$\{fmt(r.pinjaman)\}</td><td>$\{r.bayar>0?fmt(r.bayar):'-'\}</td>\
+      <td style="color:var(--red);font-weight:700">$\{fmt(r.sisa)\}</td>\
+    </tr>`).join('');\
+\}\
+window.filterRekap=q=>\{if(currentTab==='pegawai')renderTabelRekap(q);else renderTabelPinjaman(q);\};\
+\
+window.bukaRincian=async nama=>\{\
+    const dari=_getISO('rekapMulai'),sampai=_getISO('rekapAkhir');showLoading('Memuat rincian...');\
+    try\{\
+        const res=await getRincian(nama,dari,sampai);\
+        document.getElementById('rcNama').textContent=nama;document.getElementById('rcBagian').textContent=res.bagian;\
+        document.getElementById('rcPeriod').textContent='Periode: '+(_tgl.rekapMulai||'--')+' \'97 '+(_tgl.rekapAkhir||'--');\
+        const tbody=document.getElementById('rcTbody');\
+        if(!res.items.length)\{tbody.innerHTML='<tr><td colspan="5" style="color:var(--muted);padding:20px;text-align:center;font-size:13px">Tidak ada data</td></tr>';\}\
+        else\{tbody.innerHTML=res.items.map(r=>`<tr><td>$\{r.model||'-'\}</td><td>$\{r.jenis||'-'\}</td><td>$\{r.qty||0\}</td><td>$\{fmt(r.harga)\}</td><td>$\{fmt(r.jumlah)\}</td></tr>`).join('');\}\
+        document.getElementById('rcSubtotal').textContent=fmt(res.subtotal||0);\
+        document.getElementById('rcPotongan').textContent='- '+fmt(res.potongan||0);\
+        document.getElementById('rcTotal').textContent=fmt(res.total||0);\
+        document.getElementById('rcRowPot').style.display=res.potongan>0?'':'none';\
+        document.getElementById('rcOverlay').classList.add('active');\
+    \}catch(e)\{showToast('
+\f3 \uc0\u10060 
+\f0  Gagal memuat rincian: '+e.message);\}finally\{hideLoading();\}\
+\};\
+window.tutupRincian=()=>document.getElementById('rcOverlay').classList.remove('active');\
+\
+window.openPrint=async()=>\{_setTgl('printMulai',_tgl.rekapMulai);_setTgl('printAkhir',_tgl.rekapAkhir);document.getElementById('printPage').classList.add('active');await muatDataPrint();\};\
+window.tutupPrint=()=>document.getElementById('printPage').classList.remove('active');\
+async function muatDataPrint(filter='')\{\
+    const dari=_getISO('printMulai'),sampai=_getISO('printAkhir');showLoading('Memuat data cetak...');\
+    try\{\
+        const items=await getInputData(dari,sampai);const grouped=\{\};\
+        items.forEach(r=>\{if(!grouped[r.nama])grouped[r.nama]=\{total:0\};grouped[r.nama].total+=(r.jumlah||0);\});\
+        const pinData=await getRekapPinjaman(),pinMap=\{\};pinData.forEach(r=>pinMap[r.nama]=Math.max(0,r.sisa));\
+        printRows=Object.entries(grouped).map(([nama,v])=>\{const pot=pinMap[nama]||0;return\{nama,total:v.total,potongan:pot,bersih:v.total-pot\};\}).sort((a,b)=>a.nama.localeCompare(b.nama));\
+        renderTabelPrint(filter);\
+    \}catch(e)\{showToast('
+\f3 \uc0\u10060 
+\f0  Gagal memuat');\}finally\{hideLoading();\}\
+\}\
+function renderTabelPrint(filter='')\{\
+    const tbody=document.getElementById('tbodyPrint');\
+    const rows=filter?printRows.filter(r=>r.nama.toLowerCase().includes(filter.toLowerCase())):printRows;\
+    if(!rows.length)\{tbody.innerHTML='<tr><td colspan="5" style="color:var(--muted);padding:20px;text-align:center;font-size:13px">Belum ada data</td></tr>';return;\}\
+    tbody.innerHTML=rows.map(r=>`<tr>\
+      <td><input type="checkbox" class="row-check" data-nama="$\{r.nama\}"></td>\
+      <td style="font-weight:700;text-align:left;padding-left:12px">$\{r.nama\}</td>\
+      <td style="color:var(--red)">$\{r.potongan>0?fmt(r.potongan):'-'\}</td>\
+      <td><span class="kotor-label">Kotor: $\{fmt(r.total)\}</span><span class="bersih-val">$\{fmt(r.bersih)\}</span></td>\
+      <td><button class="print-icon-btn" onclick="bukaSlipGaji('$\{r.nama.replace(/'/g,"\\\\'")\}')"><i class="fa-solid fa-print"></i></button></td>\
+    </tr>`).join('');\
+\}\
+window.filterPrint=q=>renderTabelPrint(q);\
+window.toggleCheckAll=cb=>document.querySelectorAll('.row-check').forEach(el=>el.checked=cb.checked);\
+\
+window.bukaSlipGaji=async nama=>\{\
+    const dari=_getISO('printMulai'),sampai=_getISO('printAkhir');showLoading('Memuat slip...');\
+    try\{\
+        const data=await getRincian(nama,dari,sampai);if(!data.items.length)\{showToast('
+\f2 \uc0\u9888 
+\f0  Tidak ada data!');return;\}\
+        document.getElementById('slipNama').textContent=nama;document.getElementById('slipBagian').textContent=data.bagian||'-';\
+        document.getElementById('slipPeriode').textContent='Periode: '+(_tgl.printMulai||'--')+' \'97 '+(_tgl.printAkhir||'--');\
+        document.getElementById('slipTbody').innerHTML=data.items.map(r=>`<tr><td>$\{r.model||'-'\}</td><td>$\{r.jenis||'-'\}</td><td>$\{r.qty||0\}</td><td>$\{fmt(r.harga)\}</td><td>$\{fmt(r.jumlah)\}</td></tr>`).join('');\
+        document.getElementById('slipSubtotal').textContent=fmt(data.subtotal||0);\
+        document.getElementById('slipPinjaman').textContent=fmt(data.potongan||0);\
+        document.getElementById('slipPinjamanRow').style.display=data.potongan>0?'flex':'none';\
+        document.getElementById('slipTotal').textContent=fmt(data.total||0);\
+        document.getElementById('slipPopup').classList.add('active');\
+    \}catch(e)\{showToast('
+\f3 \uc0\u10060 
+\f0  Gagal: '+e.message);\}finally\{hideLoading();\}\
+\};\
+window.tutupSlip=()=>document.getElementById('slipPopup').classList.remove('active');\
+window.cetakSlip=()=>\{if(typeof window.print==='function')\{try\{window.print();return;\}catch(e)\{\}\}_bukaSlipDiTabBaru();\};\
+function _bukaSlipDiTabBaru()\{\
+    const nama=document.getElementById('slipNama').textContent,bagian=document.getElementById('slipBagian').textContent;\
+    const periode=document.getElementById('slipPeriode').textContent,subtot=document.getElementById('slipSubtotal').textContent;\
+    const pinj=document.getElementById('slipPinjaman').textContent,total=document.getElementById('slipTotal').textContent;\
+    const hasPinj=document.getElementById('slipPinjamanRow').style.display!=='none',rows=document.getElementById('slipTbody').innerHTML;\
+    const html=`<!DOCTYPE html><html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Slip - $\{nama\}</title><link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&display=swap" rel="stylesheet"><style>body\{font-family:'Outfit',sans-serif;background:#fff;color:#1A1005;padding:20px;max-width:400px;margin:0 auto\}.hd\{display:flex;justify-content:space-between;margin-bottom:8px\}.co\{font-size:10px;color:#A0907E;font-weight:700;text-transform:uppercase;letter-spacing:.1em\}.nm\{font-size:34px;font-weight:900;line-height:1;letter-spacing:-.02em\}.bg\{text-align:right;font-size:10px;font-weight:700;color:#E8641A\}.pr\{font-size:10px;color:#A0907E;margin-bottom:12px;text-transform:uppercase;font-weight:600\}table\{width:100%;border-collapse:collapse;margin-bottom:10px\}thead tr\{background:#FDE8DA\}th\{padding:7px 4px;font-size:9px;font-weight:800;text-align:center;color:#E8641A;letter-spacing:.06em\}td\{padding:8px 4px;border-bottom:1px solid #F2E4D6;text-align:center;font-size:10px\}.ln\{display:flex;justify-content:space-between;padding:6px 0;font-size:11px;font-weight:600;color:#A0907E\}.pt\{color:#D93025\}.tot\{color:#E8641A;font-size:17px;font-weight:800;border-top:2px solid #E8641A;margin-top:6px;padding-top:10px\}.prn\{margin-top:20px;text-align:center\}.prn button\{background:#E8641A;border:none;border-radius:12px;padding:12px 30px;font-size:14px;font-weight:700;cursor:pointer;color:#fff\}@media print\{.prn\{display:none\}@page\{size:A6 landscape;margin:6mm\}\}</style></head><body><div class="hd"><div><div class="co">Radja Production</div><div class="nm">$\{nama\}</div></div><div class="bg">$\{bagian\}</div></div><div class="pr">$\{periode\}</div><table><thead><tr><th>MODEL</th><th>SUB-BAGIAN</th><th>QTY</th><th>HARGA</th><th>JUMLAH</th></tr></thead><tbody>$\{rows\}</tbody></table><div class="ln"><span>Subtotal</span><span>$\{subtot\}</span></div>$\{hasPinj?`<div class="ln pt"><span>Bayar Pinjaman</span><span>- $\{pinj\}</span></div>`:''\}<div class="ln tot"><span>Total Bersih</span><span>$\{total\}</span></div><div class="prn"><button onclick="window.print()">
+\f3 \uc0\u55357 \u56744 
+\f0  Cetak / Simpan PDF</button></div></body></html>`;\
+    const blob=new Blob([html],\{type:'text/html'\}),url=URL.createObjectURL(blob);window.open(url,'_blank');setTimeout(()=>URL.revokeObjectURL(url),30000);\
+\}\
+\
+window.bukaDatePicker=target=>\{\
+    dpTarget=target;const titles=\{mulai:'Tanggal Mulai',akhir:'Tanggal Akhir',printMulai:'Tanggal Mulai',printAkhir:'Tanggal Akhir'\};\
+    document.getElementById('dpTitle').textContent=titles[target]||'Pilih Tanggal';\
+    const stateMap=\{mulai:'rekapMulai',akhir:'rekapAkhir',printMulai:'printMulai',printAkhir:'printAkhir'\};\
+    const label=_tgl[stateMap[target]]||'';\
+    if(label&&label.includes('/'))\{const p=label.split('/');document.getElementById('dpInput').value=`$\{p[2]\}-$\{p[1].padStart(2,'0')\}-$\{p[0].padStart(2,'0')\}`;\}\
+    else document.getElementById('dpInput').value='';\
+    document.getElementById('datePickerPopup').classList.add('active');\
+\};\
+window.tutupDatePicker=()=>document.getElementById('datePickerPopup').classList.remove('active');\
+window.konfirmasiDatePicker=async()=>\{\
+    const val=document.getElementById('dpInput').value;if(!val)\{tutupDatePicker();return;\}\
+    const [y,m,d]=val.split('-');const stateMap=\{mulai:'rekapMulai',akhir:'rekapAkhir',printMulai:'printMulai',printAkhir:'printAkhir'\};\
+    _setTgl(stateMap[dpTarget],`$\{d\}/$\{m\}/$\{y\}`);tutupDatePicker();\
+    if(dpTarget==='mulai'||dpTarget==='akhir')\{if(currentTab==='pegawai')await muatRekapPegawai();\}\
+    if(dpTarget==='printMulai'||dpTarget==='printAkhir')\{await muatDataPrint();\}\
+\};\
+\
+(function init()\{\
+    const s=fmtTgl(new Date());_setTgl('rekapMulai',s);_setTgl('rekapAkhir',s);_setTgl('printMulai',s);_setTgl('printAkhir',s);\
+    initMasterListener();setTimeout(hideLoading,1500);\
+\})();\
+</script>\
+</body>\
+</html>}
